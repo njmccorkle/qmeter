@@ -28,10 +28,18 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="alembic\env.py" />
+    <Compile Include="alembic\versions\3a176dbb444e_fix_grillsessiondata_relationship.py" />
+    <Compile Include="alembic\versions\7a42589f1100_change_table_names_to_avoid_reserved_.py" />
+    <Compile Include="alembic\versions\9b01896e5dc1_first_link_to_qmeter.py" />
+    <Compile Include="alembic\versions\f8ef93523b39_add_sessiondata_table.py" />
+    <Compile Include="qmeter\flaskdb.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="qmeter\apicalls.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="qmeter\config.py">
+    <Compile Include="config.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="qmeter\heatermeter.py">
@@ -40,12 +48,14 @@
     <Compile Include="qmeter\models.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="qmeter\qms.py" />
+    <Compile Include="qms.py" />
     <Compile Include="runserver.py" />
     <Compile Include="qmeter\__init__.py" />
     <Compile Include="qmeter\views.py" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="alembic\" />
+    <Folder Include="alembic\versions\" />
     <Folder Include="qmeter\" />
     <Folder Include="qmeter\static\" />
     <Folder Include="qmeter\static\content\" />
@@ -54,10 +64,15 @@
     <Folder Include="qmeter\templates\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="alembic.ini" />
+    <Content Include="alembic\README" />
+    <Content Include="alembic\script.py.mako" />
+    <Content Include="alembic\versions\**" />
     <Content Include="libman.json" />
     <Content Include="environment.ps1">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="README.txt" />
     <Content Include="requirements.txt" />
     <Content Include="qmeter\static\content\bootstrap.css" />
     <Content Include="qmeter\static\content\bootstrap.min.css" />
