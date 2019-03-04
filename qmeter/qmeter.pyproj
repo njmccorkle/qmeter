@@ -28,11 +28,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="alembic\env.py" />
-    <Compile Include="alembic\versions\3a176dbb444e_fix_grillsessiondata_relationship.py" />
-    <Compile Include="alembic\versions\7a42589f1100_change_table_names_to_avoid_reserved_.py" />
-    <Compile Include="alembic\versions\9b01896e5dc1_first_link_to_qmeter.py" />
-    <Compile Include="alembic\versions\f8ef93523b39_add_sessiondata_table.py" />
+    <Compile Include="migrations\env.py" />
     <Compile Include="qmeter\flaskdb.py">
       <SubType>Code</SubType>
     </Compile>
@@ -54,8 +50,8 @@
     <Compile Include="qmeter\views.py" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="alembic\" />
-    <Folder Include="alembic\versions\" />
+    <Folder Include="migrations\" />
+    <Folder Include="migrations\versions\" />
     <Folder Include="qmeter\" />
     <Folder Include="qmeter\static\" />
     <Folder Include="qmeter\static\content\" />
@@ -65,13 +61,25 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="alembic.ini" />
-    <Content Include="alembic\README" />
-    <Content Include="alembic\script.py.mako" />
-    <Content Include="alembic\versions\**" />
+    <Content Include="alembic\versions\3a176dbb444e_fix_grillsessiondata_relationship.py" />
+    <Content Include="alembic\versions\7a42589f1100_change_table_names_to_avoid_reserved_.py" />
+    <Content Include="alembic\versions\9b01896e5dc1_first_link_to_qmeter.py" />
+    <Content Include="alembic\versions\f8ef93523b39_add_sessiondata_table.py" />
+    <Content Include="alembic\versions\__pycache__\3a176dbb444e_fix_grillsessiondata_relationship.cpython-36.pyc" />
+    <Content Include="alembic\versions\__pycache__\3b4803977e21_change_temp_fields_to_numeric_2.cpython-36.pyc" />
+    <Content Include="alembic\versions\__pycache__\440840a482ae_change_temp_fields_to_numeric_2.cpython-36.pyc" />
+    <Content Include="alembic\versions\__pycache__\580c53d52b01_change_temp_fields_to_numeric_2.cpython-36.pyc" />
+    <Content Include="alembic\versions\__pycache__\7a42589f1100_change_table_names_to_avoid_reserved_.cpython-36.pyc" />
+    <Content Include="alembic\versions\__pycache__\9b01896e5dc1_first_link_to_qmeter.cpython-36.pyc" />
+    <Content Include="alembic\versions\__pycache__\e40e271304db_change_temp_fields_to_numeric_2.cpython-36.pyc" />
+    <Content Include="alembic\versions\__pycache__\f8ef93523b39_add_sessiondata_table.cpython-36.pyc" />
     <Content Include="libman.json" />
     <Content Include="environment.ps1">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="migrations\alembic.ini" />
+    <Content Include="migrations\README" />
+    <Content Include="migrations\script.py.mako" />
     <Content Include="README.txt" />
     <Content Include="requirements.txt" />
     <Content Include="qmeter\static\content\bootstrap.css" />

@@ -5,7 +5,7 @@ class APIcalls (object):
     # time series data
     status = "/luci/lm/api/status"
     time = "/luci/lm/api/status/time"
-    setpoint = "/luci/lm/api/status/set"
+    set = "/luci/lm/api/status/set"
     lid = "/luci/lm/api/status/lid"
     fan = "/luci/lm/api/status/fan"
     fan_c = "/luci/lm/api/status/fan/c"
@@ -93,14 +93,14 @@ class APIcalls (object):
     ucid = "/luci/lm/api/config/ucid"
 
 
-class Heatermeter(APIcalls):
+class Heatermeter(object):
 
     def __init__ (self, httpConnect = True, server = 'localhost', port='80', apikey=None):
         #self.httpConnect = 1 # 0=Serial, 1=http
         #self.server = "http://" + config.SERVER_ADDRESS
         #self.port = str(config.SERVER_PORT)
         #self.apikey = config.API_KEY
-        #self.apiCalls = APIcalls()
+        self.apiCalls = APIcalls()
         self.httpConnect = httpConnect
         self.server = 'http://' + server
         self.port = str(port)

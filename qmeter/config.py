@@ -1,4 +1,6 @@
 import os
+from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore
+
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 class Config(object):
@@ -9,6 +11,21 @@ class Config(object):
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///' + os.path.join(basedir, 'qmeter.sqlite')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
+    # define APScheduler job for qmeter data service
+    JOBS = [
+        {
+            'id': 'qms',
+            'func': 'test',
+            'trigger': 'interval',
+            'seconds': 2
+        }
+    ]
+
+    SCHEDULER_JOBSTORES = {
+        'default': SQLAlchemyJobStore(url=SQLALCHEMY_DATABASE_URI)
+    }
+
+    SCHEDULER_API_ENABLED = True
 
     #SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
 
