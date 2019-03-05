@@ -21,9 +21,9 @@ class Config(object):
         }
     ]
 
-    SCHEDULER_JOBSTORES = {
-        'default': SQLAlchemyJobStore(url=SQLALCHEMY_DATABASE_URI)
-    }
+    #SCHEDULER_JOBSTORES = {
+    #    'default': SQLAlchemyJobStore(url=SQLALCHEMY_DATABASE_URI)
+    #}
 
     SCHEDULER_API_ENABLED = True
 

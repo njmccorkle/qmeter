@@ -1,5 +1,6 @@
 from datetime import datetime
 from qmeter import db
+from flask import current_app
 
 class GrillSession(db.Model):
     __tablename__ = 'sessions'

@@ -3,11 +3,13 @@ Routes and views for the flask application.
 """
 
 from datetime import datetime
-from flask import render_template
-from qmeter import app, db
+from flask import render_template, current_app
+#from qmeter import app, db
+from qmeter import db
+from qmeter.main import bp
 
-@app.route('/')
-@app.route('/home')
+@bp.route('/')
+@bp.route('/home')
 def home():
     """Renders the home page."""
     return render_template(
@@ -16,7 +18,7 @@ def home():
         year=datetime.now().year,
     )
 
-@app.route('/contact')
+@bp.route('/contact')
 def contact():
     """Renders the contact page."""
     return render_template(
@@ -26,7 +28,7 @@ def contact():
         message='Your contact page.'
     )
 
-@app.route('/about')
+@bp.route('/about')
 def about():
     """Renders the about page."""
     return render_template(

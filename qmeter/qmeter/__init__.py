@@ -1,39 +1,42 @@
 """
 The flask application package.
 """
-from config import Config
-from flask import Flask
+from flask import Flask, request, current_app
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_apscheduler import APScheduler
 from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore
-
-app = Flask(__name__)
-app.config.from_object(Config())
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
-
-from qmeter import views, models
-
 import json
 import time
 from datetime import datetime
-
-#from config import Config
 from qmeter.heatermeter import Heatermeter
+from config import Config
 
-
-hm = Heatermeter(True, app.config['SERVER_ADDRESS'], app.config['SERVER_PORT'], app.config['API_KEY'])
-
-db.app = app
-db.init_app(app)
-
+db = SQLAlchemy()
 scheduler = APScheduler()
-scheduler.init_app(app)
-scheduler.start()
+migrate = Migrate()
 
-app.run()
+def create_app(config_class=Config):
+    app = Flask(__name__)
+    app.config.from_object(config_class)
 
+    #db.app = app
+    db.init_app(app)
+    migrate.init_app(app, db)
+    scheduler.init_app(app)
+    scheduler.start()
+    
+    hm = Heatermeter(True, app.config['SERVER_ADDRESS'], app.config['SERVER_PORT'], app.config['API_KEY'])
+
+    from qmeter.main import bp as main_bp
+    app.register_blueprint(main_bp)
+
+    return app
+
+
+
+
+#@scheduler.task('interval', id='test1', seconds=1, misfire_grace_time=10)
 def test():
     print("test")
     return
@@ -99,3 +102,6 @@ def test():
 #    main()
 
 #scheduler.add_job(saveData,'interval', seconds = 1)
+
+
+from qmeter import models

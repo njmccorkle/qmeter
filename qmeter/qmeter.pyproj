@@ -41,18 +41,22 @@
     <Compile Include="qmeter\heatermeter.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="qmeter\main\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="qmeter\models.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="qms.py" />
     <Compile Include="runserver.py" />
     <Compile Include="qmeter\__init__.py" />
-    <Compile Include="qmeter\views.py" />
+    <Compile Include="qmeter\main\routes.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="migrations\" />
     <Folder Include="migrations\versions\" />
     <Folder Include="qmeter\" />
+    <Folder Include="qmeter\main\" />
     <Folder Include="qmeter\static\" />
     <Folder Include="qmeter\static\content\" />
     <Folder Include="qmeter\static\fonts\" />
