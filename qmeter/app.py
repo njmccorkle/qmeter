@@ -2,12 +2,13 @@
 This script runs the qmeter application using a development server.
 """
 
-from os import environ
-from qmeter import create_app, db
+#from os import environ
+from app import create_app, db
 
 
-if __name__ == '__main__':
-    app = create_app()
+#if __name__ == '__main__':
+#    app = create_app()
+app = create_app()
 
     #HOST = environ.get('SERVER_HOST', 'localhost')
     #try:

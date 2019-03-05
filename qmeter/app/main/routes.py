@@ -6,10 +6,10 @@ from datetime import datetime
 from flask import render_template, current_app
 #from qmeter import app, db
 from qmeter import db
-from qmeter.main import bp
+from qmeter.main import main
 
-@bp.route('/')
-@bp.route('/home')
+@main.route('/')
+@main.route('/home')
 def home():
     """Renders the home page."""
     return render_template(
@@ -18,7 +18,7 @@ def home():
         year=datetime.now().year,
     )
 
-@bp.route('/contact')
+@main.route('/contact')
 def contact():
     """Renders the contact page."""
     return render_template(
@@ -28,7 +28,7 @@ def contact():
         message='Your contact page.'
     )
 
-@bp.route('/about')
+@main.route('/about')
 def about():
     """Renders the about page."""
     return render_template(

@@ -1,5 +1,5 @@
 from datetime import datetime
-from qmeter import db
+from app import db
 from flask import current_app
 
 class GrillSession(db.Model):
