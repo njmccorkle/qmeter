@@ -12,14 +12,14 @@ class Config(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     # define APScheduler job for qmeter data service
-    JOBS = [
-        {
-            'id': 'qms',
-            'func': 'test',
-            'trigger': 'interval',
-            'seconds': 2
-        }
-    ]
+    #JOBS = [
+    #    {
+    #        'id': 'qms',
+    #        'func': 'test',
+    #        'trigger': 'interval',
+    #        'seconds': 2
+    #    }
+    #]
 
     #SCHEDULER_JOBSTORES = {
     #    'default': SQLAlchemyJobStore(url=SQLALCHEMY_DATABASE_URI)

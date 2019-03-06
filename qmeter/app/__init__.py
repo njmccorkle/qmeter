@@ -6,53 +6,35 @@ from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore
 import json
 import time
 from datetime import datetime
-#from app.heatermeter import Heatermeter
+from app.heatermeter import Heatermeter
 from config import Config
 
+db = SQLAlchemy()
+scheduler = APScheduler()
+migrate = Migrate()
+
 def create_app(config_class=Config):
-	app = Flask(__name__)
-	app.config.from_object(config_class)	
-	db.init_app(app)
+    app = Flask(__name__)
+    app.config.from_object(config_class)
 
-	from app.main import main
-	app.register_blueprint(main)
+	# might not need this line
+    db.app = app
+    db.init_app(app)
+    migrate.init_app(app, db)
+    scheduler.init_app(app)
+    scheduler.start()
 
-	return app
-
-
-
-
-#@scheduler.task('interval', id='test1', seconds=1, misfire_grace_time=10)
-#def test():
-#    print("test")
-#    return
+	#hm = Heatermeter(True, app.config['SERVER_ADDRESS'], app.config['SERVER_PORT'], app.config['API_KEY'])
 
 
-#def saveData():
-#    #db = Session(engine)
 
-#    # get current active session
-#    activeSession = db.query(GrillSession, GrillSession.id).filter(GrillSession.active==1).first()
-    
-#    if not activeSession is not None:
-#        activeSession = db.query(GrillSession).filter(GrillSession.id==0).first()
-#        activeSession.active = True
-#        db.commit()
+    from app.main import bp as main_bp
+    app.register_blueprint(main_bp)
 
-#    print("active session: {}".format(activeSession.id))
-#    parsed = json.loads(hm.sendRequest(hm.apiCalls.status,-1).text)
-#    data = GrillSessionData(session_id = activeSession.id, \
-#                            setpoint = parsed['set'], \
-#                            fan = parsed['fan']['c'], \
-#                            temp0 = parsed['temps'][0]['c'], \
-#                            temp1 = parsed['temps'][1]['c'], \
-#                            temp2 = parsed['temps'][2]['c'], \
-#                            temp3 = parsed['temps'][3]['c'])
-#    db.add(data)
-#    db.commit()
-
-#    return
-
+    @app.before_first_request
+    def load_tasks():
+        from app import tasks
+    return app
 #def cleanDatabase():
 #    print("deleting session data ")
 #    session.query(GrillSessionData).filter(GrillSessionData.id> 0).delete()

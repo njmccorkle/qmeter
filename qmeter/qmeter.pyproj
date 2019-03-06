@@ -7,7 +7,7 @@
     <ProjectGuid>5937c945-62f7-4181-b907-484ddaa1f320</ProjectGuid>
     <ProjectHome>.</ProjectHome>
     <ProjectTypeGuids>{789894c7-04a9-4a11-a6b5-3f4435165112};{1b580a1a-fdb3-4b32-83e1-6407eb2722e6};{349c5851-65df-11da-9384-00065b846f21};{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
-    <StartupFile>app.py</StartupFile>
+    <StartupFile>qmeter.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -28,8 +28,10 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="migrations\env.py" />
     <Compile Include="app\apicalls.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\tasks.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="config.py">
@@ -44,17 +46,14 @@
     <Compile Include="app\models.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="migrations\env.py" />
+    <Compile Include="migrations\versions\56d6af6709da_create_tables.py" />
     <Compile Include="qms.py" />
-    <Compile Include="app.py" />
-    <Compile Include="app\__init__.py.old" />
+    <Compile Include="qmeter.py" />
+    <Compile Include="app\__init__.py" />
     <Compile Include="app\main\routes.py" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="alembic\" />
-    <Folder Include="alembic\versions\" />
-    <Folder Include="alembic\versions\__pycache__\" />
-    <Folder Include="migrations\" />
-    <Folder Include="migrations\versions\" />
     <Folder Include="app\" />
     <Folder Include="app\main\" />
     <Folder Include="app\static\" />
@@ -62,29 +61,19 @@
     <Folder Include="app\static\fonts\" />
     <Folder Include="app\static\scripts\" />
     <Folder Include="app\templates\" />
+    <Folder Include="migrations\" />
+    <Folder Include="migrations\versions\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include=".env">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="alembic.ini" />
-    <Content Include="alembic\versions\3a176dbb444e_fix_grillsessiondata_relationship.py" />
-    <Content Include="alembic\versions\7a42589f1100_change_table_names_to_avoid_reserved_.py" />
-    <Content Include="alembic\versions\9b01896e5dc1_first_link_to_qmeter.py" />
-    <Content Include="alembic\versions\f8ef93523b39_add_sessiondata_table.py" />
-    <Content Include="alembic\versions\__pycache__\3a176dbb444e_fix_grillsessiondata_relationship.cpython-36.pyc" />
-    <Content Include="alembic\versions\__pycache__\3b4803977e21_change_temp_fields_to_numeric_2.cpython-36.pyc" />
-    <Content Include="alembic\versions\__pycache__\440840a482ae_change_temp_fields_to_numeric_2.cpython-36.pyc" />
-    <Content Include="alembic\versions\__pycache__\580c53d52b01_change_temp_fields_to_numeric_2.cpython-36.pyc" />
-    <Content Include="alembic\versions\__pycache__\7a42589f1100_change_table_names_to_avoid_reserved_.cpython-36.pyc" />
-    <Content Include="alembic\versions\__pycache__\9b01896e5dc1_first_link_to_qmeter.cpython-36.pyc" />
-    <Content Include="alembic\versions\__pycache__\e40e271304db_change_temp_fields_to_numeric_2.cpython-36.pyc" />
-    <Content Include="alembic\versions\__pycache__\f8ef93523b39_add_sessiondata_table.cpython-36.pyc" />
     <Content Include="libman.json" />
     <Content Include="environment.ps1">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="migrations\alembic.ini" />
-    <Content Include="migrations\README" />
-    <Content Include="migrations\script.py.mako" />
-    <Content Include="app\__init__.py" />
+    <Content Include="app\initold.py" />
     <Content Include="app\static\content\bootstrap.css" />
     <Content Include="app\static\content\bootstrap.min.css" />
     <Content Include="app\static\content\site.css" />
@@ -111,6 +100,9 @@
     <Content Include="app\templates\contact.html" />
     <Content Include="app\templates\index.html" />
     <Content Include="app\templates\layout.html" />
+    <Content Include="migrations\alembic.ini" />
+    <Content Include="migrations\README" />
+    <Content Include="migrations\script.py.mako" />
     <Content Include="requirements.txt" />
   </ItemGroup>
   <ItemGroup>

@@ -5,11 +5,11 @@ Routes and views for the flask application.
 from datetime import datetime
 from flask import render_template, current_app
 #from qmeter import app, db
-from qmeter import db
-from qmeter.main import main
+from app import db
+from app.main import bp
 
-@main.route('/')
-@main.route('/home')
+@bp.route('/')
+@bp.route('/home')
 def home():
     """Renders the home page."""
     return render_template(
@@ -18,7 +18,7 @@ def home():
         year=datetime.now().year,
     )
 
-@main.route('/contact')
+@bp.route('/contact')
 def contact():
     """Renders the contact page."""
     return render_template(
@@ -28,7 +28,7 @@ def contact():
         message='Your contact page.'
     )
 
-@main.route('/about')
+@bp.route('/about')
 def about():
     """Renders the about page."""
     return render_template(
