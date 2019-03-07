@@ -7,6 +7,7 @@ from flask import render_template, current_app
 #from qmeter import app, db
 from app import db
 from app.main import bp
+from app.main.forms import QMSServiceConfigForm
 
 @bp.route('/')
 @bp.route('/home')
@@ -21,11 +22,13 @@ def home():
 @bp.route('/config')
 def config():
     """Renders the contact page."""
+    form = QMSServiceConfigForm()
     return render_template(
         'config.html',
         title='Config',
         year=datetime.now().year,
-        message='Edit qmeter config.'
+        message='Edit qmeter config',
+        form=form
     )
 
 @bp.route('/sessions')

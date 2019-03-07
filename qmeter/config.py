@@ -7,6 +7,7 @@ class Config(object):
     API_KEY="5c4dfbd597b59c9af5a218a0dff00b9a"
     SERVER_ADDRESS="heatermeter.mccorkle.co"
     SERVER_PORT=80
+    SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
 
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///' + os.path.join(basedir, 'qmeter.sqlite')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
@@ -26,8 +27,6 @@ class Config(object):
     }
 
     SCHEDULER_API_ENABLED = True
-
-    #SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
 
     #SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
     #    'sqlite:///' + os.path.join(basedir,'app.db')
