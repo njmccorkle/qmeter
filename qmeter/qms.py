@@ -3,26 +3,23 @@ import time  # only for sleep function
 from datetime import datetime
 #import pytz
 from config import Config
-from qmeter.heatermeter import Heatermeter
-#from sqlalchemy import create_engine
-#from sqlalchemy.orm import Session
-from qmeter.models import metadata, GrillSession, GrillSessionData
+from app.heatermeter import Heatermeter
+from sqlalchemy import create_engine
+from sqlalchemy.orm import Session
+from qms_models import GrillSession, GrillSessionData
 from apscheduler.schedulers.background import BackgroundScheduler
+from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore
 
 config = Config()
 hm = Heatermeter(True, config.SERVER_ADDRESS, config.SERVER_PORT, config.API_KEY)
 engine = create_engine(config.SQLALCHEMY_DATABASE_URI)
 session = Session(engine)
-scheduler = BackgroundScheduler()
 
-#grillsession = GrillSession(session_id=0,session_name='Test Session 1')
-#session.add(grillsession)
-#session.commit()
-
-#works
-#temp = session.query(GrillSession).filter(GrillSession.session_id==1).first()
-#for i in temp.session_data:
-#    print('{}\t{}\t{}'.format(i.timestamp,i.setpoint, i.temp0))
+scheduler = BackgroundScheduler({
+    'apscheduler.jobstores.default': {
+        'type': 'sqlalchemy',
+        'url': config.SQLALCHEMY_DATABASE_URI}
+})
 
 def saveData():
     db = Session(engine)
@@ -49,7 +46,6 @@ def saveData():
 
     return
 
-
 def cleanDatabase():
     print("deleting session data ")
     session.query(GrillSessionData).filter(GrillSessionData.id> 0).delete()
@@ -62,7 +58,7 @@ def createDefaultSession():
         print("Creating default session...")
         grillsession = GrillSession(id=0, \
                                     name='Default Session', \
-                                    description='Session for recording without a defined session', \
+                                    description='Default session', \
                                     active=1)
         session.add(grillsession)
         session.commit()
@@ -83,18 +79,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-#sessions = session.query(GrillSession).all()
-
-#for i in session.query(GrillSession).all():
-#    print (i.session_id, i.session_name)
-
-#status = hm.sendRequest(hm.apiCalls.status, -1)
-#parsed = json.loads(status.text)
-#print(json.dumps(parsed, indent=4, sort_keys=True))
-
-#config = hm.sendRequest(hm.apiCalls.config, -1)
-#parsed = json.loads(config.text)
-#print(json.dumps(parsed, indent=4, sort_keys=True))
-#print(parsed['ip'])

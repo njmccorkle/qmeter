@@ -18,14 +18,24 @@ def home():
         year=datetime.now().year,
     )
 
-@bp.route('/contact')
-def contact():
+@bp.route('/config')
+def config():
     """Renders the contact page."""
     return render_template(
-        'contact.html',
-        title='Contact',
+        'config.html',
+        title='Config',
         year=datetime.now().year,
-        message='Your contact page.'
+        message='Edit qmeter config.'
+    )
+
+@bp.route('/sessions')
+def sessions():
+    """Renders the contact page."""
+    return render_template(
+        'sessions.html',
+        title='Sessions',
+        year=datetime.now().year,
+        message='View/edit sessions'
     )
 
 @bp.route('/about')
