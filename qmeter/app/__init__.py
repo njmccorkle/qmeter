@@ -7,10 +7,12 @@ from flask_bootstrap import Bootstrap
 #from datetime import datetime
 from app.heatermeter import Heatermeter
 from config import Config
+from flask_apscheduler import APScheduler
 
 db = SQLAlchemy()
 migrate = Migrate()
 bootstrap = Bootstrap()
+scheduler = APScheduler()
 
 def create_app(config_class=Config):
     app = Flask(__name__)
@@ -21,6 +23,7 @@ def create_app(config_class=Config):
     db.init_app(app)
     migrate.init_app(app, db)
     bootstrap.init_app(app)
+    scheduler.init_app(app)
 	#hm = Heatermeter(True, app.config['SERVER_ADDRESS'], app.config['SERVER_PORT'], app.config['API_KEY'])
 
     from app.main import bp as main_bp
