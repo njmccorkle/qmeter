@@ -44,7 +44,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="migrations\env.py" />
-    <Compile Include="migrations\versions\56d6af6709da_create_tables.py" />
     <Compile Include="qms.py" />
     <Compile Include="qmeter.py" />
     <Compile Include="app\__init__.py" />
@@ -63,6 +62,7 @@
     <Folder Include="app\templates\" />
     <Folder Include="migrations\" />
     <Folder Include="migrations\versions\" />
+    <Folder Include="migrations\__pycache__\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".env">
@@ -104,6 +104,7 @@
     <Content Include="migrations\alembic.ini" />
     <Content Include="migrations\README" />
     <Content Include="migrations\script.py.mako" />
+    <Content Include="migrations\__pycache__\env.cpython-36.pyc" />
     <Content Include="requirements.txt" />
   </ItemGroup>
   <ItemGroup>

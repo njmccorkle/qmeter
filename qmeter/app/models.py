@@ -24,3 +24,11 @@ class GrillSessionData(db.Model):
     temp2 = db.Column(db.Numeric(precision=2))
     temp3 = db.Column(db.Numeric(precision=2))
     timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+
+class APSchedulerTasks(db.Model):
+    # this is just a re-implementation of the AP Scheduler table
+    # this way the flask app can modify the table that the scheduler runs from
+    __tablename__ = 'apscheduler_jobs'
+    id = db.Column(db.String(191), primary_key=True, nullable=False)
+    next_run_time = db.Column(db.Numeric, index=True)
+    job_state = db.Column(db.BLOB, nullable=False)

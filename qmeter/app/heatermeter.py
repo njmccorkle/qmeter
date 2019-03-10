@@ -1,5 +1,6 @@
 #from apicalls import APIcalls
 import requests
+#scheduler = BackgroundScheduler(config.SCHEDULER_JOBSTORES)
 
 class APIcalls (object):
     # time series data

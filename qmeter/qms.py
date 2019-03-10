@@ -1,3 +1,4 @@
+import logging
 import json
 import time  # only for sleep function
 from datetime import datetime
@@ -15,11 +16,16 @@ hm = Heatermeter(True, config.SERVER_ADDRESS, config.SERVER_PORT, config.API_KEY
 engine = create_engine(config.SQLALCHEMY_DATABASE_URI)
 session = Session(engine)
 
+logging.basicConfig()
+logging.getLogger('apscheduler').setLevel(logging.WARNING)
+
 scheduler = BackgroundScheduler({
     'apscheduler.jobstores.default': {
         'type': 'sqlalchemy',
         'url': config.SQLALCHEMY_DATABASE_URI}
 })
+
+#scheduler = BackgroundScheduler(config.SCHEDULER_JOBSTORES)
 
 def saveData():
     db = Session(engine)
@@ -70,12 +76,17 @@ def createDefaultSession():
 def main():
     #cleanDatabase()
     createDefaultSession()
-
-    job = scheduler.add_job(saveData,'interval', seconds = 1, id='qms')
-
-    scheduler.start()
+    #if scheduler.get_job('qms') is None:
+        #scheduler.add_job(saveData,'interval', seconds = 1, id='qms')
+    print("0")
+    scheduler.get_jobs()
+    print("1")
+    #scheduler.start()
+    print("2")
     while True:
-        time.sleep(5)
+        1
+        #time.sleep(5)
+        #print("looping")
 
 if __name__ == "__main__":
     main()
