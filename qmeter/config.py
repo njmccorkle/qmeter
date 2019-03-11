@@ -1,5 +1,6 @@
 import os
 from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore
+import app
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -16,6 +17,14 @@ class Config(object):
     SCHEDULER_JOBSTORES = {
         'default': SQLAlchemyJobStore(url=SQLALCHEMY_DATABASE_URI)
     }
+
+    #this works but can't do it here. new job every time a page is loaded
+    #JOBS = [
+    #    {
+    #        'id': 'qms',
+    #        'func': 'app:saveData',
+    #        'trigger':'interval',
+    #        'seconds': 1}]
     
     ## use this for APSCheduler NOT flask-APScheduler
     #SCHEDULER_JOBSTORES = {

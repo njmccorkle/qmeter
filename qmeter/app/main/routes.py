@@ -26,12 +26,12 @@ def config():
         # to reschedule a job we need to access that APScheduler scheduler directly
         sched = scheduler.scheduler
         print("data = {}".format(form.save_interval.data))
-        sched.reschedule_job('test', trigger='interval', seconds=form.save_interval.data)
+        sched.reschedule_job('qms', trigger='interval', seconds=form.save_interval.data)
 
         flash ('QMS save interval set to {} seconds'.format(form.save_interval.data))
         return redirect(url_for('main.config'))
 
-    job = scheduler.get_job('test')
+    job = scheduler.get_job('qms')
     print(job.trigger.interval)
     w, d = divmod(job.trigger.interval.days, 7)
     mm, ss = divmod(job.trigger.interval.seconds, 60)
